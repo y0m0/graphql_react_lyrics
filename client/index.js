@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import SongList from './components/SongList';
+
 const Root = () => {
-  return <div>Lyrical</div>
+  return (
+    <SongList />
+  )
 };
 
 ReactDOM.render(
