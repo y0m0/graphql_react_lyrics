@@ -6,31 +6,34 @@ class SongList extends Component {
   renderSongs() {
     return this.props.data.songs.map(song => {
       return (
-        <li>
-          {song.title}
-        </li>
+        <ul className="collection">
+          <li key={song.id} className="collection-item">
+            {song.title}
+          </li>
+        </ul>
       );
     });
   }
-
+  
   render() {
     if (this.props.data.loading) {
       return <div>Loading...</div>;
     }
     return (
       <div>
-        {this.renderSongs()}
+      {this.renderSongs()}
       </div>
     );
   }
 }
 
 const query = gql`
-  {
-    songs {
-      title
-    }
+{
+  songs {
+    id,
+    title
   }
+}
 `;
 
 export default graphql(query)(SongList);
