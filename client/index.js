@@ -12,7 +12,7 @@ const Root = () => {
     <ApolloProvider client={client}>
       <SongList />
     </ApolloProvider>
-  )
+  );
 };
 
 ReactDOM.render(
