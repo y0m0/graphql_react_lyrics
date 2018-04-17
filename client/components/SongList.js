@@ -4,7 +4,8 @@ import { graphql } from 'react-apollo';
 import { Link } from 'react-router';
 
 // graphql queries
-import fetchSongsQuery from '../queries/fetchSongs.js';
+import fetchSongs from '../queries/fetchSongs.js';
+import deleteSong from '../mutations/deleteSong';
 
 class SongList extends Component {
   renderSongs() {
@@ -37,4 +38,8 @@ class SongList extends Component {
   }
 }
 
-export default graphql(fetchSongsQuery)(SongList);
+// Weird workaround to associate mutliple queries/mutations
+// to the same component
+export default graphql(deleteSong)(
+  graphql(fetchSongs)(SongList)
+);
