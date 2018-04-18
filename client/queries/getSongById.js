@@ -3,11 +3,12 @@ import gql from 'graphql-tag';
 export default gql`
   query getSongById($id: ID!) {
     song(id: $id) {
-      id,
-      title,
+      id
+      title
       lyrics {
-        id,
+        id
         content
+        likes
       }
     }
   }

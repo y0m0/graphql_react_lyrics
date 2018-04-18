@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+
+// graphql mutations
+import likeLyric from '../mutations/likeLyric';
 
 class LyricList extends Component {
   onLike(id) {
-    console.log(id)
+    this.props.mutate({ variables: { id } });
   }
 
   renderLyrics() {
@@ -10,12 +14,15 @@ class LyricList extends Component {
       return (
         <li key={lyric.id} className="collection-item">
           {lyric.content}
-          <i
-            onClick={() => this.onLike(lyric.id)}
-            className="material-icons"
-          >
-            thumb_up
-          </i>
+          <div className="vote-box">
+            <i
+              onClick={() => this.onLike(lyric.id)}
+              className="material-icons"
+            >
+              thumb_up
+            </i>
+            {lyric.likes}
+          </div>
         </li>
       );
     });
@@ -31,4 +38,4 @@ class LyricList extends Component {
   }
 }
 
-export default LyricList;
+export default graphql(likeLyric)(LyricList);
