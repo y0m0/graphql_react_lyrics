@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router';
 
 // graphql query
 import getSongById from '../queries/getSongById';
@@ -13,6 +14,7 @@ class SongDetails extends Component {
     }
     return (
       <div>
+        <Link to="/">Back</Link>
         <h3>{song.title}</h3>
       </div>
     );
