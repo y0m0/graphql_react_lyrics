@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+
+// graphql mutations
+import addLyricToSong from '../mutations/addLyricToSong';
 
 class SongCreate extends Component {
   constructor(props) {
@@ -9,6 +13,13 @@ class SongCreate extends Component {
 
   onSubmit(event) {
     event.preventDefault();
+
+    this.props.mutate({
+      variables: {
+        content: this.state.content,
+        songId: this.props.songId
+      }
+    }).then(() => this.setState({ content: '' }));
   }
 
   render() {
@@ -26,4 +37,4 @@ class SongCreate extends Component {
   }
 }
 
-export default SongCreate;
+export default graphql(addLyricToSong)(SongCreate);
